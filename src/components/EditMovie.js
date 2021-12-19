@@ -137,8 +137,6 @@ export default class EditMovie extends Component {
   }
 
   confirmDelete = (e) => {
-    console.log("Would delete movie id", this.state.movie.id);
-
     confirmAlert({
       customUI: ({ onClose }) => {
         return (
