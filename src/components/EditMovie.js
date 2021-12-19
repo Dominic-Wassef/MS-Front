@@ -1,9 +1,13 @@
+/* eslint-disable react/jsx-no-undef */
 import React, { Component, Fragment } from "react";
 import "./EditMovie.css";
 import Input from "./form-components/Input";
 import TextArea from "./form-components/TextArea";
 import Select from "./form-components/Select";
 import Alert from "./ui-components/Alert" 
+import { Link } from "react-router-dom";
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css';
 export default class EditMovie extends Component {
   constructor(props) {
     super(props);
@@ -132,6 +136,30 @@ export default class EditMovie extends Component {
     }
   }
 
+  confirmDelete = (e) => {
+    console.log("Would delete movie id", this.state.movie.id);
+
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <div className='custom-ui'>
+            <h1>Are you sure?</h1>
+            <p>You want to delete this file?</p>
+            <button onClick={onClose}>No</button>
+            <button
+              onClick={() => {
+                this.handleClickDelete();
+                onClose();
+              }}
+            >
+              Yes, Delete it!
+            </button>
+          </div>
+        );
+      }
+    });
+  }
+
   render() {
     let { movie, isLoaded, error } = this.state;
 
@@ -212,6 +240,15 @@ export default class EditMovie extends Component {
             <hr />
 
             <button className="btn btn-primary">Save</button>
+            <Link to="/admin" className="btn btn-warning ms-1">
+                Cancel
+            </Link>
+            {movie.id > 0 && (
+              <a href="#!" onClick={() => this.confirmDelete()}
+              className="btn btn-danger ms-1">
+                Delete
+              </a>
+            )}
           </form>
         </Fragment>
       );
