@@ -144,7 +144,7 @@ confirmDelete = (e) => {
       {
         label: 'Yes',
         onClick: () => {
-          fetch("http://localhost:4000/admin/deletemovie/" + this.state.movie.id, {method: "GET"})
+          fetch("http://localhost:4000/v1/admin/deletemovie/" + this.state.movie.id, {method: "GET"})
           .then(response => response.json)
           .then(data => {
             if (data.error) {
