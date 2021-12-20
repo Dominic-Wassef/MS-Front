@@ -136,27 +136,37 @@ export default class EditMovie extends Component {
     }
   }
 
-  confirmDelete = (e) => {
-    confirmAlert({
-      customUI: ({ onClose }) => {
-        return (
-          <div className='custom-ui'>
-            <h1>Are you sure?</h1>
-            <p>You want to delete this movie?</p>
-            <button onClick={onClose}>No</button>
-            <button
-              onClick={() => {
-                this.handleClickDelete();
-                onClose();
-              }}
-            >
-              Yes, Delete it!
-            </button>
-          </div>
-        );
+confirmDelete = (e) => {
+  confirmAlert({
+    title: 'Delete Movie?',
+    message: 'Are you sure?',
+    buttons: [
+      {
+        label: 'Yes',
+        onClick: () => {
+          fetch("http://localhost:4000/admin/deletemovie/" + this.state.movie.id, {method: "GET"})
+          .then(response => response.json)
+          .then(data => {
+            if (data.error) {
+              this.setState({
+                alert: {type: "alert-danger", message: data.error.message}
+              })
+            } else {
+              this.props.history.push({
+                pathname: "/admin",
+              })
+
+            }
+          })
+        }
+      },
+      {
+        label: 'No',
+        onClick: () => {}
       }
-    });
-  }
+    ]
+  });
+}
 
   render() {
     let { movie, isLoaded, error } = this.state;
