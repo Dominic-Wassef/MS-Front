@@ -168,36 +168,6 @@ confirmDelete = (e) => {
   });
 }
 
-confirmSave= (e) => {
-  confirmAlert({
-    title: 'Save Movie?',
-    buttons: [
-      {
-        label: 'Yes',
-        onClick: () => {
-          fetch("http://localhost:4000/v1/admin/movie/" + this.state.movie.id, {method: "POST"})
-          .then(response => response.json)
-          .then(data => {
-            if (data.error) {
-              this.setState({
-                alert: {type: "alert-success", message: "Movie has been saved!"}
-              })
-            } else {
-              this.props.history.push({
-                pathname: "/admin",
-              })
-
-            }
-          })
-        }
-      },
-      {
-        label: 'No',
-        onClick: () => {}
-      }
-    ]
-  });
-}
 
   render() {
     let { movie, isLoaded, error } = this.state;
@@ -282,6 +252,7 @@ confirmSave= (e) => {
             <Link to="/admin" className="btn btn-warning ms-1">
                 Cancel
             </Link>
+            
             {movie.id > 0 && (
               <a href="#!" onClick={() => this.confirmDelete()}
               className="btn btn-danger ms-1">
