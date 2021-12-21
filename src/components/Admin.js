@@ -59,7 +59,7 @@ export default class Admin extends Component {
               <Link
                 key={m.id}
                 className="list-group-item list-group-item-action"
-                to={`/movies/${m.id}`}
+                to={`/admin/movie/${m.id}`}
               >
                 {m.title}
               </Link>
