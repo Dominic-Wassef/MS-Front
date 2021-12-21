@@ -86,7 +86,7 @@ export default class App extends Component {
 
             <Route path="/genre/:id" component={OneGenre} />
 
-            
+            <Route exact path="/login" comonent={(props) => <Login {...props} handleJWTChange={this.handleJWTChange} />} />
 
             <Route exact path="/genres">
               <Genres />
