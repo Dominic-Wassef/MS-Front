@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-undef */
 import React, { Component } from 'react';
 import { Fragment } from 'react/cjs/react.production.min';
 import Alert from './ui-components/Alert';
@@ -24,7 +25,7 @@ export default class Login extends Component {
         let value = this.target.value;
         let name = this.target.name;
         this.setState((prevState) => ({
-            ...prevState
+            ...prevState,
             [name]: value,
         }));
     }
