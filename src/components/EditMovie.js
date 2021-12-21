@@ -248,7 +248,7 @@ confirmDelete = (e) => {
 
             <hr />
 
-            <button className="btn btn-primary">Save</button>
+            <button className="btn btn-primary" Link to="/admin">Save</button>
             <Link to="/admin" className="btn btn-warning ms-1">
                 Cancel
             </Link>
