@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Movies from './components/Movies';
 import Admin from './components/Admin';
@@ -7,7 +7,6 @@ import OneMovie from './components/OneMovie';
 import Genres from './components/Genres';
 import OneGenre from './components/OneGenre';
 import EditMovie from './components/EditMovie';
-import { Fragment } from 'react/cjs/react.production.min';
 import Login from "./components/Login";
 
 export default class App extends Component {
@@ -86,7 +85,7 @@ export default class App extends Component {
 
             <Route path="/genre/:id" component={OneGenre} />
 
-            <Route exact path="/login" comonent={(props) => <Login {...props} handleJWTChange={this.handleJWTChange} />} />
+            <Route exact path="/login" component={(props) => <Login {...props} handleJWTChange={this.handleJWTChange} />} />
 
             <Route exact path="/genres">
               <Genres />
