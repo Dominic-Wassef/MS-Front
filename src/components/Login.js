@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-undef */
-import React, { Component } from 'react';
-import { Fragment } from 'react/cjs/react.production.min';
-import Alert from './ui-components/Alert';
+import React, { Component, Fragment } from "react";
+import Input from "./form-components/Input";
+import Alert from "./ui-components/Alert";
 
 export default class Login extends Component {
     constructor(props) {
@@ -15,8 +15,8 @@ export default class Login extends Component {
             alert: {
                 type: "d-none",
                 message: "",
-            }
-        }
+            },
+        };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
