@@ -14,7 +14,7 @@ export default class App extends Component {
     this.state = {
       jwt: "",
     }
-    this.handleJWTChange(this.handleJWTChange(this));
+    this.handleJWTChange(this.handleJWTChange.bind(this));
   }
 
   handleJWTChange = (jwt) => {
