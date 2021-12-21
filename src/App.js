@@ -8,6 +8,7 @@ import Genres from './components/Genres';
 import OneGenre from './components/OneGenre';
 import EditMovie from './components/EditMovie';
 import { Fragment } from 'react/cjs/react.production.min';
+import Login from "./components/Login";
 
 export default class App extends Component {
   constructor(props) {
@@ -84,6 +85,8 @@ export default class App extends Component {
             </Route>
 
             <Route path="/genre/:id" component={OneGenre} />
+
+            
 
             <Route exact path="/genres">
               <Genres />
