@@ -7,6 +7,7 @@ import OneMovie from './components/OneMovie';
 import Genres from './components/Genres';
 import OneGenre from './components/OneGenre';
 import EditMovie from './components/EditMovie';
+import { Fragment } from 'react/cjs/react.production.min';
 
 export default class App extends Component {
   constructor(props) {
@@ -26,11 +27,23 @@ export default class App extends Component {
   }
 
   render() {
+    let loginLink;
+    if (this.state.jwt === "") {
+      loginLink = <Link to="/login">Login</Link>
+    } else {
+      loginLink = <Link to="/logout" onClick={this.logout}>Login</Link>
+    }
+
   return (
     <Router>
     <div className="container">
       <div className="row">
+      <div className="col mt-3">
         <h1 className="mt-3">Go Watch a Movie!</h1>
+        </div>
+        <div className="col mt-3 text-end">
+          {loginLink}
+        </div>
         <hr className="mb-3"></hr>
       </div>
 
@@ -47,12 +60,16 @@ export default class App extends Component {
               <li className="list-group-item">
                 <Link to="/genres">Genres</Link>
               </li>
+              {this.state.jwt !== "" && (
+              <Fragment>
               <li className="list-group-item">
                 <Link to="/admin/movie/0">Add movie</Link>
               </li>
               <li className="list-group-item">
                 <Link to="/admin">Manage Catalogue</Link>
               </li>
+              </Fragment>
+              )}
             </ul>
           </nav>
         </div>
