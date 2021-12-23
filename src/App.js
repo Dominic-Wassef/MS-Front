@@ -8,6 +8,7 @@ import Genres from "./components/Genres";
 import OneGenre from "./components/OneGenre";
 import EditMovie from "./components/EditMovie";
 import Login from "./components/Login";
+import GraphQL from "./components/GraphQL";
 
 export default class App extends Component {
   constructor(props) {
@@ -18,12 +19,22 @@ export default class App extends Component {
     this.handleJWTChange(this.handleJWTChange.bind(this));
   }
 
+  componentDidMount() {
+    let t = window.localStorage.getItem("jwt");
+    if (t) {
+      if (this.state.jwt === "") {
+        this.setState({jwt: JSON.parse(t)});
+      }
+    }
+  }
+
   handleJWTChange = (jwt) => {
     this.setState({ jwt: jwt });
   };
 
   logout = () => {
     this.setState({ jwt: "" });
+    window.localStorage.removeItem("jwt");
   };
 
   render() {
@@ -72,8 +83,10 @@ export default class App extends Component {
                       </li>
                     </Fragment>
                   )}
+                  <li className="list-group-item">
+                    <Link to="/graphql">GraphQL</Link>
+                  </li>
                 </ul>
-                <pre>{JSON.stringify(this.state, null, 3)}</pre>
               </nav>
             </div>
 
@@ -99,6 +112,10 @@ export default class App extends Component {
                   <Genres />
                 </Route>
 
+                <Route exact path="/graphql">
+                  <GraphQL />
+                </Route>
+
                 <Route
                   path="/admin/movie/:id"
                   component={(props) => (
@@ -113,9 +130,6 @@ export default class App extends Component {
                   )}
                 />
 
-                {/* <Route path="/admin">
-                  <Admin />
-                </Route> */}
                 <Route path="/">
                   <Home />
                 </Route>
